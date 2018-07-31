@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
     marginBottom: 5,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: "lato-bold"
   },
   formGroup: {
     marginTop: 10,

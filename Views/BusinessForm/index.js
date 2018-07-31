@@ -11,53 +11,57 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 import { StackNavigator } from "react-navigation";
-import BusinessForm from "../BusinessForm";
 
-export default class SignupForm extends React.Component {
+export default class BusinessForm extends React.Component {
   static navigationOptions = {
-    headerTitle: <Text>Next Steps</Text>
+    title: "Business Details",
+    headerTitleStyle: {
+      fontFamily: "lato-bold",
+      fontSize: 22
+    }
   };
+
   render() {
     return (
-      <View>
+      <View style={styles.signUpForm}>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Name</Text>
+          <Text style={styles.formLabel}>Mobile Number</Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="Enter your full name"
+            placeholder="0905 1234567"
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Email</Text>
+          <Text style={styles.formLabel}>
+            What is the name of your business?
+          </Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="at least 9 characters"
+            placeholder="Enter the name of your business"
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Create your password</Text>
+          <Text style={styles.formLabel}>How many staff do you have?</Text>
           <TextInput
             style={styles.inputText}
-            secureTextEntry={true}
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="at least 9 characters"
+            placeholder="Enter the number of your staff"
           />
         </View>
-
         <View style={styles.formGroup}>
           <Button
             onPress={() => {
-              this.props.navigation.navigate("BusinessForm");
+              this.props.navigation.navigate("Guide");
             }}
-            title="Get Started!"
+            title="Continue"
             buttonStyle={{
               backgroundColor: "#FFA526",
               width: "100%",
@@ -97,5 +101,12 @@ const styles = StyleSheet.create({
   formGroup: {
     marginTop: 10,
     marginBottom: 10
+  },
+  signUpForm: {
+    flex: 4,
+    backgroundColor: "#FFFFFF",
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20
   }
 });
