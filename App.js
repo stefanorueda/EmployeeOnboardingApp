@@ -5,7 +5,10 @@ import SignupForm from "./Views/SignupForm";
 import SigninForm from "./Views/SigninForm";
 import BusinessForm from "./Views/BusinessForm";
 import Guide from "./Views/Guide";
+import Main from "./Views/Main";
 import { Font } from "expo";
+import EmployeeOnboarding from "./Views/EmployeeOnboarding";
+import Account from "./Views/Account";
 
 const RootStack = StackNavigator(
   {
@@ -13,7 +16,10 @@ const RootStack = StackNavigator(
     SignupForm: { screen: SignupForm },
     SigninForm: { screen: SigninForm },
     BusinessForm: { screen: BusinessForm },
-    Guide: { screen: Guide }
+    Guide: { screen: Guide },
+    Main: { screen: Main },
+    EmployeeOnboarding: { screen: EmployeeOnboarding },
+    Account: { screen: Account }
   },
   { headerMode: "screen" }
 );

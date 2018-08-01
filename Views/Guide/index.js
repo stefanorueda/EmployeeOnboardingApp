@@ -60,9 +60,9 @@ export default class Guide extends Component {
           />;
           <Text style={styles.text}>Let Tanda do the rest</Text>
           <Button
-            // onPress={() => {
-            //   this.props.navigation.navigate("BusinessForm");
-            // }}
+            onPress={() => {
+              this.props.navigation.navigate("Main");
+            }}
             title="Start now"
             buttonStyle={{
               backgroundColor: "#FFA526",

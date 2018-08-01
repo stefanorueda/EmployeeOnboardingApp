@@ -15,9 +15,14 @@ import { StackNavigator } from "react-navigation";
 export default class BusinessForm extends React.Component {
   static navigationOptions = {
     title: "Business Details",
+    headerTintColor: "#ffffff",
+    headerStyle: {
+      backgroundColor: "#3fafd7"
+    },
     headerTitleStyle: {
       fontFamily: "lato-bold",
-      fontSize: 22
+      fontSize: 22,
+      color: "#ffffff"
     }
   };
 
