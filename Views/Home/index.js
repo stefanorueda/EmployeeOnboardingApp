@@ -58,30 +58,34 @@ export default class Home extends React.Component {
             <Button
               onPress={() => this.onSignup(2, true)}
               title="Sign In"
-              buttonStyle={{
-                backgroundColor: "none"
-              }}
+              buttonStyle={
+                this.state.index === 2
+                  ? styles.navButton
+                  : styles.navButtonDisabled
+              }
               textStyle={
                 this.state.index === 2
                   ? { fontFamily: "lato-bold" }
                   : { fontFamily: "lato-regular" }
               }
-              color={this.state.index === 2 ? "#3FAFD7" : "#536171"}
+              color={this.state.index === 2 ? "#ffffff" : "#536171"}
             />
           </View>
           <View style={styles.formTabs}>
             <Button
               onPress={() => this.onSignup(0, false)}
               title="Sign Up"
-              buttonStyle={{
-                backgroundColor: "none"
-              }}
+              buttonStyle={
+                this.state.index === 0
+                  ? styles.navButton
+                  : styles.navButtonDisabled
+              }
               textStyle={
                 this.state.index === 0
                   ? { fontFamily: "lato-bold" }
                   : { fontFamily: "lato-regular" }
               }
-              color={this.state.index === 0 ? "#3FAFD7" : "#536171"}
+              color={this.state.index === 0 ? "#ffffff" : "#536171"}
             />
           </View>
         </View>
@@ -135,5 +139,16 @@ const styles = StyleSheet.create({
   navLabel: {
     fontSize: 18,
     color: "#536171"
+  },
+  navButton: {
+    backgroundColor: "#FFA526",
+    borderRadius: 24,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 25,
+    paddingLeft: 25
+  },
+  navButtonDisabled: {
+    backgroundColor: "transparent"
   }
 });
