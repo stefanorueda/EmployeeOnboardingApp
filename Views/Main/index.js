@@ -15,8 +15,10 @@ import { Font } from "expo";
 import EmployeeOnboarding from "../EmployeeOnboarding";
 import Account from "../Account";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { StackNavigator } from "react-navigation";
+import BusinessForm from "../BusinessForm";
 
-export default createBottomTabNavigator(
+const BottomStack = createBottomTabNavigator(
   {
     EmployeeOnboarding: {
       screen: EmployeeOnboarding,
@@ -42,13 +44,42 @@ export default createBottomTabNavigator(
       inactiveTintColor: "#CAD2DE", // inactive icon color
       style: {
         backgroundColor: "#3fafd7" // TabBar background
-      } // hide labels);
+      }
     }
   }
 );
 
-class Main extends React.Component {
-  //   render() {
-  //     return <Text>asdasd</Text>;
-  //   }
+export default class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
+  static navigationOptions = {
+    title: "Employee Onboarding",
+    headerLeft: null,
+    headerTintColor: "#ffffff",
+    headerStyle: {
+      backgroundColor: "#3fafd7"
+    },
+    headerTitleStyle: {
+      fontFamily: "lato-bold",
+      fontSize: 22,
+      color: "#ffffff"
+    },
+    headerRight: (
+      <Button
+        title={<Icon name="plus" color="white" size={28} />}
+        onPress={() => this.props.navigation.navigate("BusinessForm")}
+        buttonStyle={{ backgroundColor: "transparent" }}
+      />
+    )
+  };
+
+  addEmployee() {
+    console.log("asd");
+  }
+  render() {
+    return <BottomStack />;
+  }
 }

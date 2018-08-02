@@ -38,7 +38,9 @@ export default class SigninForm extends React.Component {
         </View>
         <View style={styles.formGroup}>
           <Button
-            // onPress={this.onSubmit}
+            onPress={() => {
+              this.props.navigation.navigate("Guide");
+            }}
             title="Sign In"
             buttonStyle={{
               backgroundColor: "#FFA526",

@@ -13,11 +13,20 @@ import { Button } from "react-native-elements";
 import { Font } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StackNavigator } from "react-navigation";
+import BusinessForm from "../BusinessForm";
 
 export default class EmployeeOnboarding extends React.Component {
   static navigationOptions = {
     title: "Employee Onboarding",
-    headerTintColor: "#ffffff"
+    headerTintColor: "#ffffff",
+    headerStyle: {
+      backgroundColor: "#3fafd7"
+    },
+    headerTitleStyle: {
+      fontFamily: "lato-bold",
+      fontSize: 22,
+      color: "black"
+    }
   };
   render() {
     return (
