@@ -7,7 +7,8 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  LayoutAnimation
+  LayoutAnimation,
+  Image
 } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Button } from "react-native-elements";
@@ -52,8 +53,10 @@ export default class Home extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <View style={{ flex: this.state.index, backgroundColor: "#3fafd7" }} />
-        <View style={styles.navbar}>
+        <View style={styles.header}>
+          <Text style={styles.textLogo}>Employee Onboarding</Text>
+        </View>
+        {/* <View style={styles.navbar}>
           <View style={styles.formTabs}>
             <Button
               onPress={() => this.onSignup(2, true)}
@@ -88,13 +91,10 @@ export default class Home extends React.Component {
               color={this.state.index === 0 ? "#ffffff" : "#536171"}
             />
           </View>
-        </View>
+        </View> */}
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.signUpForm}>
-            {this.state.display && <SigninForm />}
-            {!this.state.display && (
-              <SignupForm navigation={this.props.navigation} />
-            )}
+            <SignupForm navigation={this.props.navigation} />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -150,5 +150,10 @@ const styles = StyleSheet.create({
   },
   navButtonDisabled: {
     backgroundColor: "transparent"
+  },
+  textLogo: {
+    fontSize: 32,
+    color: "#ffffff",
+    fontFamily: "lato-bold"
   }
 });

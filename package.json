@@ -19,17 +19,21 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^27.0.1",
     "react": "16.3.1",
+    "react-intl-tel-input": "^5.0.7",
     "react-native": "~0.55.2",
     "react-native-elements": "^0.19.1",
     "react-native-fontawesome": "^5.7.0",
     "react-native-swiper": "^1.5.13",
-    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.9.3",
     "react-navigation-tabs": "^0.5.1",
-    "react-router": "^4.3.1",
+    "react-redux": "^5.0.7",
     "react-router-native": "^4.3.0",
-    "react-router-navigation": "^1.0.0-rc.4"
+    "react-router-navigation": "^1.0.0-rc.4",
+    "redux": "^4.0.0",
+    "redux-axios-middleware": "^4.0.0",
+    "validate.js": "^0.12.0"
   }
 }

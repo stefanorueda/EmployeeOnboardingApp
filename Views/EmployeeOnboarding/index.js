@@ -12,7 +12,7 @@ import {
 import { Button } from "react-native-elements";
 import { Font } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import BusinessForm from "../BusinessForm";
 
 export default class EmployeeOnboarding extends React.Component {
@@ -30,93 +30,89 @@ export default class EmployeeOnboarding extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.cardSuccess}>
-          <View style={styles.cardCol1}>
-            <Text style={styles.labelName}>Stefano Rueda</Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
-            </Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
-              Status
-            </Text>
-          </View>
-          <View style={styles.cardCol2}>
-            <Button
-              // onPress={() => {
-              //   this.props.navigation.navigate("Guide");
-              // }}
-              title="Complete"
-              buttonStyle={styles.buttonSuccess}
-              color="#ffffff"
+      <View>
+        <View style={styles.searchContainer}>
+          <View style={styles.formGroup}>
+            <TextInput
+              style={styles.inputText}
+              inlineImageLeft="search_icon"
+              // keyboardType="numeric"
+              // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
+              // value={this.state.ftWorkingWeek}
+              placeholder={"Search Employee"}
             />
           </View>
         </View>
-        <View style={styles.cardDanger}>
-          <View style={styles.cardCol1}>
-            <Text style={styles.labelName}>Joel Jensen</Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
-            </Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
-              Status
+        <View style={styles.container}>
+          <View style={styles.cardNewEmployee}>
+            <Text style={styles.cardNewLabel}>
+              <Icon name="user-plus" size={20} color="#8A9BAE" /> Add New
+              Employee
             </Text>
           </View>
-          <View style={styles.cardCol2}>
-            <Button
-              // onPress={() => {
-              //   this.props.navigation.navigate("Guide");
-              // }}
-              title="Incomplete"
-              buttonStyle={styles.buttonDanger}
-              color="#ffffff"
-            />
+          <View style={styles.cardSuccess}>
+            <View style={styles.cardCol1}>
+              <Text style={styles.labelName}>Stefano Rueda</Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
+              </Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
+                Status
+              </Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="calendar" size={20} /> 4:43 PM, 10 May 2018
+              </Text>
+            </View>
+            <View style={styles.cardCol2}>
+              <Button
+                title="Complete"
+                buttonStyle={styles.buttonSuccess}
+                color="#ffffff"
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.cardSuccess}>
-          <View style={styles.cardCol1}>
-            <Text style={styles.labelName}>Josh Cameron</Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
-            </Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
-              Status
-            </Text>
+          <View style={styles.cardDanger}>
+            <View style={styles.cardCol1}>
+              <Text style={styles.labelName}>Joel Jensen</Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
+              </Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
+                Status
+              </Text>
+            </View>
+            <View style={styles.cardCol2}>
+              <Button
+                title="Incomplete"
+                buttonStyle={styles.buttonDanger}
+                color="#ffffff"
+              />
+            </View>
           </View>
-          <View style={styles.cardCol2}>
-            <Button
-              // onPress={() => {
-              //   this.props.navigation.navigate("Guide");
-              // }}
-              title="Complete"
-              buttonStyle={styles.buttonSuccess}
-              color="#ffffff"
-            />
-          </View>
-        </View>
-        <View style={styles.cardSuccess}>
-          <View style={styles.cardCol1}>
-            <Text style={styles.labelName}>Bryce Davies</Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
-            </Text>
-            <Text style={styles.labelDesc}>
-              <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
-              Status
-            </Text>
-          </View>
-          <View style={styles.cardCol2}>
-            <Button
-              // onPress={() => {
-              //   this.props.navigation.navigate("Guide");
-              // }}
-              title="Complete"
-              buttonStyle={styles.buttonSuccess}
-              color="#ffffff"
-            />
+
+          <View style={styles.cardSuccess}>
+            <View style={styles.cardCol1}>
+              <Text style={styles.labelName}>Bryce Davies</Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="check" size={20} color="#99CA2F" /> Invitation Sent
+              </Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="times" size={20} color="#D63C3A" /> Payroll Push
+                Status
+              </Text>
+              <Text style={styles.labelDesc}>
+                <Icon name="calendar" size={20} /> 4:43 PM, 10 May 2018
+              </Text>
+            </View>
+            <View style={styles.cardCol2}>
+              <Button
+                title="Complete"
+                buttonStyle={styles.buttonSuccess}
+                color="#ffffff"
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -134,6 +130,24 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
     marginBottom: 5
+  },
+  cardNewLabel: {
+    fontSize: 18,
+    color: "#8A9BAE",
+    fontFamily: "lato-bold"
+  },
+  cardNewEmployee: {
+    flexDirection: "row",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderColor: "#536171",
+    height: 80,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    flexDirection: "row",
+    marginBottom: 15
   },
   cardSuccess: {
     backgroundColor: "#ffffff",
@@ -203,5 +217,26 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     padding: 3
+  },
+  inputText: {
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: "#CAD2DE",
+    height: 40,
+    paddingLeft: 20,
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: "#F0F2F5"
+  },
+  formGroup: {
+    marginTop: 10,
+    marginBottom: 10
+  },
+  searchContainer: {
+    backgroundColor: "#ffffff",
+    width: "100%",
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });

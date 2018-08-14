@@ -15,7 +15,7 @@ import { Font } from "expo";
 import EmployeeOnboarding from "../EmployeeOnboarding";
 import Account from "../Account";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import BusinessForm from "../BusinessForm";
 
 const BottomStack = createBottomTabNavigator(
@@ -52,10 +52,9 @@ const BottomStack = createBottomTabNavigator(
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: "Employee Onboarding",
     headerLeft: null,
     headerTintColor: "#ffffff",
@@ -69,16 +68,13 @@ export default class Main extends React.Component {
     },
     headerRight: (
       <Button
-        title={<Icon name="plus" color="white" size={28} />}
-        onPress={() => this.props.navigation.navigate("BusinessForm")}
+        title={<Icon name="user-plus" color="white" size={28} />}
+        onPress={() => navigation.navigate("AddEmployee")}
         buttonStyle={{ backgroundColor: "transparent" }}
       />
     )
-  };
+  });
 
-  addEmployee() {
-    console.log("asd");
-  }
   render() {
     return <BottomStack />;
   }

@@ -10,18 +10,22 @@ import {
   LayoutAnimation
 } from "react-native";
 import { Button } from "react-native-elements";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import BusinessForm from "../BusinessForm";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class SignupForm extends React.Component {
   static navigationOptions = {
     headerTitle: <Text>Next Steps</Text>
   };
+
   render() {
     return (
       <View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Name</Text>
+          <Text style={styles.formLabel}>
+            <Icon name="user" color="#536171" size={20} /> Name
+          </Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
@@ -31,7 +35,9 @@ export default class SignupForm extends React.Component {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Email</Text>
+          <Text style={styles.formLabel}>
+            <Icon name="envelope" color="#536171" size={20} /> Email
+          </Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
@@ -41,7 +47,9 @@ export default class SignupForm extends React.Component {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Create your password</Text>
+          <Text style={styles.formLabel}>
+            <Icon name="lock" color="#536171" size={20} /> Create your password
+          </Text>
           <TextInput
             style={styles.inputText}
             secureTextEntry={true}

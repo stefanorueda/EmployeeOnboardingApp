@@ -10,12 +10,38 @@ import {
   LayoutAnimation
 } from "react-native";
 import { Button } from "react-native-elements";
+import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export default class SigninForm extends React.Component {
+export default class AddEmployee extends React.Component {
+  static navigationOptions = {
+    title: "New Employee",
+    headerTintColor: "#ffffff",
+    headerStyle: {
+      backgroundColor: "#3fafd7"
+    },
+    headerTitleStyle: {
+      fontFamily: "lato-bold",
+      fontSize: 22,
+      color: "#ffffff"
+    }
+  };
+
   render() {
     return (
-      <View>
+      <View style={styles.signUpForm}>
+        <View style={styles.formGroup}>
+          <Text style={styles.formLabel}>
+            <Icon name="user" color="#536171" size={20} /> Full Name
+          </Text>
+          <TextInput
+            style={styles.inputText}
+            // keyboardType="numeric"
+            // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
+            // value={this.state.ftWorkingWeek}
+            placeholder="John Smith"
+          />
+        </View>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
             <Icon name="envelope" color="#536171" size={20} /> Email
@@ -25,29 +51,27 @@ export default class SigninForm extends React.Component {
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="Enter your email"
+            placeholder="johnsmith@tanda.co"
           />
         </View>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
-            <Icon name="lock" color="#536171" size={20} /> Password
+            <Icon name="phone" color="#536171" size={20} /> Phone
           </Text>
           <TextInput
             style={styles.inputText}
-            secureTextEntry={true}
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="Enter your password"
+            placeholder="Optional"
           />
         </View>
         <View style={styles.formGroup}>
           <Button
             onPress={() => {
-              this.props.navigation.navigate("Guide");
+              this.props.navigation.navigate("Main");
             }}
-            title="Sign In"
-            icon={<Icon name="arrow-right" color="white" size={18} />}
+            title="Send Invite"
             buttonStyle={{
               backgroundColor: "#FFA526",
               width: "100%",
@@ -82,11 +106,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 5,
     marginBottom: 5,
-    fontWeight: "bold",
     fontFamily: "lato-bold"
   },
   formGroup: {
     marginTop: 10,
     marginBottom: 10
+  },
+  signUpForm: {
+    flex: 4,
+    backgroundColor: "#FFFFFF",
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20
   }
 });

@@ -12,7 +12,7 @@ import {
 import { Button } from "react-native-elements";
 import { Font } from "expo";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 
 export default class Account extends React.Component {
   static navigationOptions = {

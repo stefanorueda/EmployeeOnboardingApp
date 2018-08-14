@@ -9,8 +9,10 @@ import {
   Keyboard,
   LayoutAnimation
 } from "react-native";
+
 import { Button } from "react-native-elements";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class BusinessForm extends React.Component {
   static navigationOptions = {
@@ -30,18 +32,21 @@ export default class BusinessForm extends React.Component {
     return (
       <View style={styles.signUpForm}>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>Mobile Number</Text>
+          <Text style={styles.formLabel}>
+            <Icon name="phone" color="#536171" size={20} /> Mobile Number
+          </Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
-            placeholder="0905 1234567"
+            placeholder="09168822098"
           />
         </View>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
-            What is the name of your business?
+            <Icon name="briefcase" color="#536171" size={20} /> What is the name
+            of your business?
           </Text>
           <TextInput
             style={styles.inputText}
@@ -52,7 +57,10 @@ export default class BusinessForm extends React.Component {
           />
         </View>
         <View style={styles.formGroup}>
-          <Text style={styles.formLabel}>How many staff do you have?</Text>
+          <Text style={styles.formLabel}>
+            <Icon name="users" color="#536171" size={20} /> How many staff do
+            you have?
+          </Text>
           <TextInput
             style={styles.inputText}
             // keyboardType="numeric"
@@ -64,7 +72,7 @@ export default class BusinessForm extends React.Component {
         <View style={styles.formGroup}>
           <Button
             onPress={() => {
-              this.props.navigation.navigate("Guide");
+              this.props.navigation.navigate("Main");
             }}
             title="Continue"
             buttonStyle={{

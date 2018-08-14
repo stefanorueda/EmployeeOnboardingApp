@@ -1,5 +1,5 @@
 import React from "react";
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import Home from "./Views/Home";
 import SignupForm from "./Views/SignupForm";
 import SigninForm from "./Views/SigninForm";
@@ -9,17 +9,19 @@ import Main from "./Views/Main";
 import { Font } from "expo";
 import EmployeeOnboarding from "./Views/EmployeeOnboarding";
 import Account from "./Views/Account";
+import AddEmployee from "./Views/AddEmployee";
 
-const RootStack = StackNavigator(
+const RootStack = createStackNavigator(
   {
+    Guide: { screen: Guide },
     Home: { screen: Home },
     SignupForm: { screen: SignupForm },
     SigninForm: { screen: SigninForm },
     BusinessForm: { screen: BusinessForm },
-    Guide: { screen: Guide },
     Main: { screen: Main },
     EmployeeOnboarding: { screen: EmployeeOnboarding },
-    Account: { screen: Account }
+    Account: { screen: Account },
+    AddEmployee: { screen: AddEmployee }
   },
   { headerMode: "screen" }
 );
