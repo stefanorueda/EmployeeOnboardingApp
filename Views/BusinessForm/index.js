@@ -13,6 +13,7 @@ import {
 import { Button } from "react-native-elements";
 import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
+import PhoneInput from "react-native-phone-input";
 
 export default class BusinessForm extends React.Component {
   static navigationOptions = {
@@ -29,19 +30,17 @@ export default class BusinessForm extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const name = navigation.getParam("name");
+    const email = navigation.getParam("email");
+    const pasword = navigation.getParam("pasword");
     return (
       <View style={styles.signUpForm}>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
             <Icon name="phone" color="#536171" size={20} /> Mobile Number
           </Text>
-          <TextInput
-            style={styles.inputText}
-            // keyboardType="numeric"
-            // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
-            // value={this.state.ftWorkingWeek}
-            placeholder="09168822098"
-          />
+          <PhoneInput ref="phone" style={styles.inputText} />
         </View>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
@@ -54,6 +53,7 @@ export default class BusinessForm extends React.Component {
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
             placeholder="Enter the name of your business"
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.formGroup}>
@@ -67,6 +67,7 @@ export default class BusinessForm extends React.Component {
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
             placeholder="Enter the number of your staff"
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.formGroup}>

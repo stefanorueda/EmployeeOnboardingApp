@@ -40,6 +40,7 @@ export default class AddEmployee extends React.Component {
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
             placeholder="John Smith"
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.formGroup}>
@@ -52,6 +53,7 @@ export default class AddEmployee extends React.Component {
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
             placeholder="johnsmith@tanda.co"
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.formGroup}>
@@ -64,6 +66,7 @@ export default class AddEmployee extends React.Component {
             // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
             // value={this.state.ftWorkingWeek}
             placeholder="Optional"
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.formGroup}>

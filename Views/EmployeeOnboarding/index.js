@@ -40,6 +40,7 @@ export default class EmployeeOnboarding extends React.Component {
               // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
               // value={this.state.ftWorkingWeek}
               placeholder={"Search Employee"}
+              underlineColorAndroid="transparent"
             />
           </View>
         </View>
