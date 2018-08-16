@@ -14,6 +14,7 @@ import AddEmployee from "./Views/AddEmployee";
 const RootStack = createStackNavigator(
   {
     // Guide: { screen: Guide },
+
     Home: { screen: Home },
     SignupForm: { screen: SignupForm },
     SigninForm: { screen: SigninForm },

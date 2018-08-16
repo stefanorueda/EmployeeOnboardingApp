@@ -7,13 +7,16 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  LayoutAnimation
+  LayoutAnimation,
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 
 import { Button } from "react-native-elements";
 import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PhoneInput from "react-native-phone-input";
+declare var Intl: Object;
 
 export default class BusinessForm extends React.Component {
   static navigationOptions = {
@@ -29,31 +32,212 @@ export default class BusinessForm extends React.Component {
     }
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      phoneCode: "",
+      mobNum: "",
+      business: "",
+      staff: "",
+      businessValid: false,
+      phoneValid: false,
+      staffValid: false,
+      isLoading: true
+    };
+
+    this.submitForm = this.submitForm.bind(this);
+  }
+
+  getInitialState() {
+    return {
+      stylePhoneInput: styles.inputText,
+      styleBusinessInput: styles.inputText,
+      styleStaffInput: styles.inputText
+    };
+  }
+
+  updatePhone(number) {
+    if (this.phone.isValidNumber()) {
+      this.setState({
+        mobNum: this.phone.getValue(),
+        phoneValid: true,
+        stylePhoneInput: styles.inputText
+      });
+    } else {
+      this.setState({
+        phoneValid: false,
+        stylePhoneInput: styles.inputTextError
+      });
+    }
+  }
+
+  selectCountry(country) {
+    let allCountries = this.phone.getAllCountries();
+    var obj = allCountries.find(function(obj) {
+      return obj.iso2 === country;
+    });
+    let phoneCode = "";
+    phoneCode = obj.name + ": +" + obj.dialCode;
+
+    this.setState({ phoneCode: phoneCode });
+  }
+
+  submitForm(name, email, password) {
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    let data = {
+      name: name,
+      email: email,
+      password: password,
+      business_name: this.state.business,
+      staff_count: this.state.staff,
+      phonecode: this.state.phoneCode,
+      phone: this.state.mobNum,
+      time_zone: timezone,
+      scope: "user"
+    };
+    console.log(data);
+    this.props.navigation.navigate("Main");
+  }
+
+  onFocus(e) {
+    switch (e) {
+      case "phone":
+        this.setState({ stylePhoneInput: styles.inputTextFocus });
+        break;
+
+      case "business":
+        this.setState({ styleBusinessInput: styles.inputTextFocus });
+
+        break;
+      case "staff":
+        this.setState({ styleStaffInput: styles.inputTextFocus });
+        break;
+      default:
+        break;
+    }
+  }
+
+  onEndEditing(e) {
+    switch (e) {
+      case "phone":
+        if (this.state.phoneValid) {
+          this.setState({ stylePhoneInput: styles.inputText });
+        }
+        break;
+
+      case "business":
+        if (this.state.businessValid) {
+          this.setState({ styleBusinessInput: styles.inputText });
+        }
+        break;
+      case "staff":
+        if (this.state.staffValid) {
+          this.setState({ styleStaffInput: styles.inputText });
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  validate = (value, type) => {
+    let business = value;
+    let staff = value;
+    let businessValid = false;
+    let staffValid = false;
+
+    switch (type) {
+      case "business":
+        businessValid = business.length > 0;
+        if (businessValid) {
+          this.setState({
+            styleBusinessInput: styles.inputTextFocus,
+            businessValid: true,
+            business: business
+          });
+        } else {
+          this.setState({
+            styleBusinessInput: styles.inputTextError,
+            businessValid: false
+          });
+        }
+        break;
+      case "staff":
+        staffValid = staff > 0;
+        if (staffValid) {
+          this.setState({
+            styleStaffInput: styles.inputTextFocus,
+            staffValid: true,
+            staff: staff
+          });
+        } else {
+          this.setState({
+            styleStaffInput: styles.inputTextError,
+            staffValid: false
+          });
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
+  componentDidMount() {
+    this.setState({
+      isLoading: false
+    });
+  }
+
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam("name");
     const email = navigation.getParam("email");
-    const pasword = navigation.getParam("pasword");
+    const password = navigation.getParam("password");
+
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, padding: 20 }}>
+          <ActivityIndicator size="large" color="#3fafd7" />
+        </View>
+      );
+    }
+
     return (
       <View style={styles.signUpForm}>
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
             <Icon name="phone" color="#536171" size={20} /> Mobile Number
           </Text>
-          <PhoneInput ref="phone" style={styles.inputText} />
+          <PhoneInput
+            textProps={{
+              onFocus: () => this.onFocus("phone"),
+              onBlur: () => this.updatePhone("number"),
+              onEndEditing: () => this.onEndEditing("phone")
+            }}
+            style={[styles.inputText, this.state.stylePhoneInput]}
+            ref={ref => {
+              this.phone = ref;
+            }}
+            onSelectCountry={country => {
+              this.selectCountry(country);
+            }}
+          />
         </View>
+
         <View style={styles.formGroup}>
           <Text style={styles.formLabel}>
             <Icon name="briefcase" color="#536171" size={20} /> What is the name
             of your business?
           </Text>
           <TextInput
-            style={styles.inputText}
-            // keyboardType="numeric"
-            // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
-            // value={this.state.ftWorkingWeek}
+            style={[styles.inputText, this.state.styleBusinessInput]}
+            onBlur={e => this.validate("business")}
+            onFocus={() => this.onFocus("business")}
             placeholder="Enter the name of your business"
             underlineColorAndroid="transparent"
+            onChangeText={e => this.validate(e, "business")}
+            onEndEditing={() => this.onEndEditing("business")}
           />
         </View>
         <View style={styles.formGroup}>
@@ -62,19 +246,19 @@ export default class BusinessForm extends React.Component {
             you have?
           </Text>
           <TextInput
-            style={styles.inputText}
-            // keyboardType="numeric"
-            // onChangeText={ftWorkingWeek => this.setState({ ftWorkingWeek })}
-            // value={this.state.ftWorkingWeek}
+            style={[styles.inputText, this.state.styleStaffInput]}
+            keyboardType="numeric"
             placeholder="Enter the number of your staff"
             underlineColorAndroid="transparent"
+            onBlur={e => this.validate("staff")}
+            onFocus={() => this.onFocus("staff")}
+            onChangeText={e => this.validate(e, "staff")}
+            onEndEditing={() => this.onEndEditing("staff")}
           />
         </View>
         <View style={styles.formGroup}>
           <Button
-            onPress={() => {
-              this.props.navigation.navigate("Main");
-            }}
+            onPress={() => this.submitForm(name, email, password)}
             title="Continue"
             buttonStyle={{
               backgroundColor: "#FFA526",
@@ -87,6 +271,11 @@ export default class BusinessForm extends React.Component {
               marginBottom: 20
             }}
             color="#ffffff"
+            disabled={
+              this.state.phoneValid == false ||
+              this.state.businessValid == false ||
+              this.state.staffValid == false
+            }
           />
         </View>
       </View>
@@ -99,6 +288,26 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     borderWidth: 1,
     borderColor: "#CAD2DE",
+    height: 50,
+    paddingLeft: 20,
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 5
+  },
+  inputTextFocus: {
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: "#3FAFD7",
+    height: 50,
+    paddingLeft: 20,
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 5
+  },
+  inputTextError: {
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: "#D63C3A",
     height: 50,
     paddingLeft: 20,
     fontSize: 20,

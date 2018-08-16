@@ -58,10 +58,33 @@ export default class SignupForm extends React.Component {
     }
   }
 
-  validate = type => {
-    let name = this.state.name;
-    let email = this.state.email;
-    let password = this.state.password;
+  onEndEditing(e) {
+    switch (e) {
+      case "name":
+        if (this.state.nameValid) {
+          this.setState({ styleNameInput: styles.inputText });
+        }
+        break;
+
+      case "email":
+        if (this.state.emailValid) {
+          this.setState({ styleEmailInput: styles.inputText });
+        }
+        break;
+      case "password":
+        if (this.state.passwordValid) {
+          this.setState({ stylePasswordInput: styles.inputText });
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  validate = (value, type) => {
+    let name = value;
+    let email = value;
+    let password = value;
     let nameValid = false;
     let passwordValid = false;
     let emailRegex = false;
@@ -70,7 +93,11 @@ export default class SignupForm extends React.Component {
       case "name":
         nameValid = name.length > 0;
         if (nameValid) {
-          this.setState({ styleNameInput: styles.inputText, nameValid: true });
+          this.setState({
+            styleNameInput: styles.inputTextFocus,
+            nameValid: true,
+            name: name
+          });
         } else {
           this.setState({
             styleNameInput: styles.inputTextError,
@@ -82,14 +109,16 @@ export default class SignupForm extends React.Component {
         emailRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         if (emailRegex) {
           //check duplicate email
+          console.log("asda");
           axios
             .get(`https://my.tanda.co/try/validate_email?email=` + email)
             .then(res => {
-              console.log(res.data);
+              console.log(res);
               if (res.data) {
                 this.setState({
                   styleEmailInput: styles.inputText,
-                  emailValid: true
+                  emailValid: true,
+                  email: email
                 });
               } else {
                 this.setState({
@@ -97,6 +126,9 @@ export default class SignupForm extends React.Component {
                   emailValid: false
                 });
               }
+            })
+            .catch(function(error) {
+              console.log(error);
             });
         } else {
           this.setState({
@@ -109,8 +141,9 @@ export default class SignupForm extends React.Component {
         passwordValid = password.length > 8;
         if (passwordValid) {
           this.setState({
-            stylePasswordInput: styles.inputText,
-            passwordValid: true
+            stylePasswordInput: styles.inputTextFocus,
+            passwordValid: true,
+            password: password
           });
         } else {
           this.setState({
@@ -133,12 +166,12 @@ export default class SignupForm extends React.Component {
           </Text>
           <TextInput
             style={[styles.inputText, this.state.styleNameInput]}
-            onChangeText={name => this.setState({ name })}
+            onChangeText={e => this.validate(e, "name")}
             value={this.state.name}
             placeholder="Enter your full name"
             underlineColorAndroid="transparent"
-            onBlur={e => this.validate("name")}
             onFocus={() => this.onFocus("name")}
+            onEndEditing={() => this.onEndEditing("name")}
             autoCapitalize="words"
           />
         </View>
@@ -148,12 +181,12 @@ export default class SignupForm extends React.Component {
           </Text>
           <TextInput
             style={[styles.inputText, this.state.styleEmailInput]}
-            onChangeText={email => this.setState({ email })}
+            onChangeText={e => this.validate(e, "email")}
             value={this.state.email}
             placeholder="Enter your email"
             underlineColorAndroid="transparent"
-            onBlur={e => this.validate("email")}
             onFocus={() => this.onFocus("email")}
+            onEndEditing={() => this.onEndEditing("email")}
             autoCapitalize="none"
           />
         </View>
@@ -164,12 +197,12 @@ export default class SignupForm extends React.Component {
           <TextInput
             style={[styles.inputText, this.state.stylePasswordInput]}
             secureTextEntry={true}
-            onChangeText={password => this.setState({ password })}
+            onChangeText={e => this.validate(e, "password")}
             value={this.state.password}
             placeholder="at least 9 characters"
             underlineColorAndroid="transparent"
-            onBlur={e => this.validate("password")}
             onFocus={() => this.onFocus("password")}
+            onEndEditing={() => this.onEndEditing("password")}
           />
         </View>
 

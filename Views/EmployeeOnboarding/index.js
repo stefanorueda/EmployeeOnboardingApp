@@ -51,7 +51,7 @@ export default class EmployeeOnboarding extends React.Component {
               Employee
             </Text>
           </View>
-          <View style={styles.cardSuccess}>
+          {/* <View style={styles.cardSuccess}>
             <View style={styles.cardCol1}>
               <Text style={styles.labelName}>Stefano Rueda</Text>
               <Text style={styles.labelDesc}>
@@ -114,7 +114,7 @@ export default class EmployeeOnboarding extends React.Component {
                 color="#ffffff"
               />
             </View>
-          </View>
+          </View> */}
         </View>
       </View>
     );
