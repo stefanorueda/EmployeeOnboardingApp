@@ -2,8 +2,9 @@
   "expo": {
     "sdkVersion": "27.0.0",
     "name": "Employee Onboarding",
-    "version": "1.0.0",
+    "version": "4.0.0",
     "description": "Employee Onboarding",
+    "icon": "./img/onboarding_icon.png",
     "ios": {
       "bundleIdentifier": "com.tanda.employeeonboarding"
     },

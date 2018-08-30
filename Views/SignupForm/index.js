@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,12 +8,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   LayoutAnimation
-} from "react-native";
-import { Button } from "react-native-elements";
-import { createStackNavigator } from "react-navigation";
-import BusinessForm from "../BusinessForm";
-import Icon from "react-native-vector-icons/FontAwesome";
-import axios from "axios";
+} from 'react-native';
+import { Button } from 'react-native-elements';
+import { createStackNavigator } from 'react-navigation';
+import BusinessForm from '../BusinessForm';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
 
 export default class SignupForm extends React.Component {
   static navigationOptions = {
@@ -23,9 +23,9 @@ export default class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
       nameValid: false,
       emailValid: false,
       passwordValid: false
@@ -42,15 +42,15 @@ export default class SignupForm extends React.Component {
 
   onFocus(e) {
     switch (e) {
-      case "name":
+      case 'name':
         this.setState({ styleNameInput: styles.inputTextFocus });
         break;
 
-      case "email":
+      case 'email':
         this.setState({ styleEmailInput: styles.inputTextFocus });
 
         break;
-      case "password":
+      case 'password':
         this.setState({ stylePasswordInput: styles.inputTextFocus });
         break;
       default:
@@ -60,18 +60,18 @@ export default class SignupForm extends React.Component {
 
   onEndEditing(e) {
     switch (e) {
-      case "name":
+      case 'name':
         if (this.state.nameValid) {
           this.setState({ styleNameInput: styles.inputText });
         }
         break;
 
-      case "email":
+      case 'email':
         if (this.state.emailValid) {
           this.setState({ styleEmailInput: styles.inputText });
         }
         break;
-      case "password":
+      case 'password':
         if (this.state.passwordValid) {
           this.setState({ stylePasswordInput: styles.inputText });
         }
@@ -90,7 +90,7 @@ export default class SignupForm extends React.Component {
     let emailRegex = false;
 
     switch (type) {
-      case "name":
+      case 'name':
         nameValid = name.length > 0;
         if (nameValid) {
           this.setState({
@@ -105,15 +105,12 @@ export default class SignupForm extends React.Component {
           });
         }
         break;
-      case "email":
+      case 'email':
         emailRegex = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         if (emailRegex) {
-          //check duplicate email
-          console.log("asda");
           axios
             .get(`https://my.tanda.co/try/validate_email?email=` + email)
             .then(res => {
-              console.log(res);
               if (res.data) {
                 this.setState({
                   styleEmailInput: styles.inputText,
@@ -137,7 +134,7 @@ export default class SignupForm extends React.Component {
           });
         }
         break;
-      case "password":
+      case 'password':
         passwordValid = password.length > 8;
         if (passwordValid) {
           this.setState({
@@ -166,12 +163,12 @@ export default class SignupForm extends React.Component {
           </Text>
           <TextInput
             style={[styles.inputText, this.state.styleNameInput]}
-            onChangeText={e => this.validate(e, "name")}
-            value={this.state.name}
+            onChangeText={e => this.validate(e, 'name')}
+            // value={this.state.name}
             placeholder="Enter your full name"
             underlineColorAndroid="transparent"
-            onFocus={() => this.onFocus("name")}
-            onEndEditing={() => this.onEndEditing("name")}
+            onFocus={() => this.onFocus('name')}
+            onEndEditing={() => this.onEndEditing('name')}
             autoCapitalize="words"
           />
         </View>
@@ -181,12 +178,12 @@ export default class SignupForm extends React.Component {
           </Text>
           <TextInput
             style={[styles.inputText, this.state.styleEmailInput]}
-            onChangeText={e => this.validate(e, "email")}
-            value={this.state.email}
+            onChangeText={e => this.validate(e, 'email')}
+            // value={this.state.email}
             placeholder="Enter your email"
             underlineColorAndroid="transparent"
-            onFocus={() => this.onFocus("email")}
-            onEndEditing={() => this.onEndEditing("email")}
+            onFocus={() => this.onFocus('email')}
+            onEndEditing={() => this.onEndEditing('email')}
             autoCapitalize="none"
           />
         </View>
@@ -197,19 +194,19 @@ export default class SignupForm extends React.Component {
           <TextInput
             style={[styles.inputText, this.state.stylePasswordInput]}
             secureTextEntry={true}
-            onChangeText={e => this.validate(e, "password")}
-            value={this.state.password}
+            onChangeText={e => this.validate(e, 'password')}
+            // value={this.state.password}
             placeholder="at least 9 characters"
             underlineColorAndroid="transparent"
-            onFocus={() => this.onFocus("password")}
-            onEndEditing={() => this.onEndEditing("password")}
+            onFocus={() => this.onFocus('password')}
+            onEndEditing={() => this.onEndEditing('password')}
           />
         </View>
 
         <View style={styles.formGroup}>
           <Button
             onPress={() => {
-              this.props.navigation.navigate("BusinessForm", {
+              this.props.navigation.navigate('BusinessForm', {
                 email: this.state.email,
                 name: this.state.name,
                 password: this.state.password
@@ -217,10 +214,10 @@ export default class SignupForm extends React.Component {
             }}
             title="Get Started!"
             buttonStyle={{
-              backgroundColor: "#FFA526",
-              width: "100%",
+              backgroundColor: '#FFA526',
+              width: '100%',
               height: 50,
-              borderColor: "transparent",
+              borderColor: 'transparent',
               borderWidth: 0,
               borderRadius: 24,
               marginTop: 20,
@@ -243,7 +240,7 @@ const styles = StyleSheet.create({
   inputText: {
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: "#CAD2DE",
+    borderColor: '#CAD2DE',
     height: 50,
     paddingLeft: 20,
     fontSize: 20,
@@ -253,7 +250,7 @@ const styles = StyleSheet.create({
   inputTextFocus: {
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: "#3FAFD7",
+    borderColor: '#3FAFD7',
     height: 50,
     paddingLeft: 20,
     fontSize: 20,
@@ -263,7 +260,7 @@ const styles = StyleSheet.create({
   inputTextError: {
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: "#D63C3A",
+    borderColor: '#D63C3A',
     height: 50,
     paddingLeft: 20,
     fontSize: 20,
@@ -271,11 +268,11 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   formLabel: {
-    color: "#536171",
+    color: '#536171',
     fontSize: 20,
     marginTop: 5,
     marginBottom: 5,
-    fontFamily: "lato-bold"
+    fontFamily: 'lato-bold'
   },
   formGroup: {
     marginTop: 10,
