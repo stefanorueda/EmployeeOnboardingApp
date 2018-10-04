@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,13 +9,13 @@ import {
   Keyboard,
   LayoutAnimation,
   Image
-} from "react-native";
-import { createStackNavigator } from "react-navigation";
-import { Button } from "react-native-elements";
-import SignupForm from "../SignupForm";
-import SigninForm from "../SigninForm";
-import BusinessForm from "../BusinessForm";
-import { Font } from "expo";
+} from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import { Button } from 'react-native-elements';
+import SignupForm from '../SignupForm';
+import SigninForm from '../SigninForm';
+import BusinessForm from '../BusinessForm';
+import { Font } from 'expo';
 
 // Spring
 var CustomLayoutSpring = {
@@ -53,9 +53,9 @@ export default class Home extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <Text style={styles.textLogo}>Employee Onboarding</Text>
-        </View>
+        </View> */}
         {/* <View style={styles.navbar}>
           <View style={styles.formTabs}>
             <Button
@@ -105,43 +105,43 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   header: {
     flex: 2,
-    backgroundColor: "#3fafd7",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#3fafd7',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   navbar: {
     flex: 0.5,
-    backgroundColor: "#F0F2F5",
-    flexDirection: "row"
+    backgroundColor: '#F0F2F5',
+    flexDirection: 'row'
   },
   container: {
     flex: 1
   },
   signUpForm: {
     flex: 4,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 20
   },
 
   formTabs: {
-    flexDirection: "column",
+    flexDirection: 'column',
     flex: 50,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   navLabelActive: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#3FAFD7"
+    fontWeight: 'bold',
+    color: '#3FAFD7'
   },
   navLabel: {
     fontSize: 18,
-    color: "#536171"
+    color: '#536171'
   },
   navButton: {
-    backgroundColor: "#FFA526",
+    backgroundColor: '#FFA526',
     borderRadius: 24,
     paddingTop: 5,
     paddingBottom: 5,
@@ -149,11 +149,11 @@ const styles = StyleSheet.create({
     paddingLeft: 25
   },
   navButtonDisabled: {
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   textLogo: {
     fontSize: 32,
-    color: "#ffffff",
-    fontFamily: "lato-bold"
+    color: '#ffffff',
+    fontFamily: 'lato-bold'
   }
 });

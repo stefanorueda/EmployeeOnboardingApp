@@ -119,7 +119,7 @@ export default class BusinessForm extends React.Component {
     console.log(data);
     axios({
       method: 'post',
-      url: 'https://staging.tanda.co/api/v2/sign_up',
+      url: 'https://my.tanda.co/api/v2/sign_up',
       dataType: 'json',
       data: data,
       headers: { 'Content-Type': 'application/json' }

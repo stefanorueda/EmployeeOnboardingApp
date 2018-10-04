@@ -6,10 +6,10 @@
     "description": "Employee Onboarding",
     "icon": "./img/onboarding_icon.png",
     "ios": {
-      "bundleIdentifier": "com.tanda.employeeonboarding"
+      "bundleIdentifier": "co.tanda.onboarding"
     },
     "android": {
-      "package": "com.tanda.employeeonboarding"
+      "package": "co.tanda.onboarding"
     }
   }
 }
